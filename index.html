@@ -1,229 +1,116 @@
 <!DOCTYPE html>
-
 <html lang="ko">
-
   <head>
-
     <meta charset="UTF-8" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <title>챗봇 학습용 질문응답세트</title>
-
     <style>
-
       :root {
-
         --bg: #f6f7fb;
-
         --card: #ffffff;
-
         --text: #191919;
-
         --muted: #666666;
-
         --primary: #2f83c6;
-
         --primary-dark: #256ba3;
-
         --line: #e8e8e8;
-
         --tag: #f2f3f5;
-
         --shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
-
         --radius: 18px;
-
       }
-
-
 
       * { box-sizing: border-box; }
-
       body {
-
         margin: 0;
-
         font-family: "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
-
         background: linear-gradient(180deg, #fafafa 0%, #f4f4f4 100%);
-
         color: var(--text);
-
       }
-
-
 
       .container {
-
         max-width: 1280px;
-
         margin: 0 auto;
-
         padding: 28px 20px 80px;
-
       }
-
-
 
       .hero {
-
         background: linear-gradient(135deg, #2f83c6 0%, #4ea0db 60%, #a1cc5b 100%);
-
         color: white;
-
         border-radius: 28px;
-
         padding: 32px;
-
         box-shadow: var(--shadow);
-
         margin-bottom: 24px;
-
       }
-
-
 
       .hero h1 {
-
         margin: 0 0 10px;
-
         font-size: clamp(28px, 4vw, 40px);
-
         line-height: 1.16;
-        
         font-weight: 800;
-
         letter-spacing: -0.05em;
-
       }
-
-
 
       .hero p {
-
         margin: 0;
-
         color: white;
-
         font-weight: 500;
-
         line-height: 1.6;
-
       }
-
-
 
       .layout {
-
         display: grid;
-
         grid-template-columns: 360px 1fr;
-
         gap: 20px;
-
         align-items: start;
-
       }
-
-
 
       .panel {
-
         background: var(--card);
-
         border: 1px solid rgba(229,231,235,0.75);
-
         border-radius: var(--radius);
-
         box-shadow: var(--shadow);
-
       }
-
-
 
       .form-panel {
-
         position: sticky;
-
         top: 20px;
-
         padding: 20px;
-
       }
-
-
 
       .panel-title {
-
         font-size: 20px;
-
         font-weight: 800;
-
         margin-bottom: 6px;
-
       }
-
-
 
       .panel-desc {
-
         color: var(--muted);
-
         font-size: 14px;
-
         line-height: 1.5;
-
         margin-bottom: 18px;
-
       }
-
-
 
       .field { margin-bottom: 14px; }
 
-
-
       label {
-
         display: block;
-
         font-size: 14px;
-
         font-weight: 700;
-
         margin-bottom: 8px;
-
       }
-
-
 
       input, textarea, select {
-
         width: 100%;
-
         border: 1px solid #e5e5e5;
-
         border-radius: 14px;
-
         padding: 12px 14px;
-
         font: inherit;
-
         background: #fff;
-
         color: var(--text);
-
       }
 
-
-
       textarea {
-
         min-height: 100px;
-
         resize: vertical;
-
       }
 
       .answer-box {
@@ -231,657 +118,400 @@
       }
 
       .actions {
-
         display: flex;
-
         gap: 10px;
-
         margin-top: 16px;
-
       }
-
-
 
       button {
-
         border: 0;
-
         border-radius: 14px;
-
         padding: 12px 16px;
-
         font: inherit;
-
         font-weight: 700;
-
         cursor: pointer;
-
       }
 
-
-
       .btn-primary { background: var(--primary); color: white; flex: 1; }
-
       .btn-primary:hover { background: var(--primary-dark); }
-
       .btn-secondary { background: #f2f3f5; color: #191919; }
-
-
 
       .content-panel { padding: 20px; }
 
-
-
       .toolbar {
-
         display: flex;
-
         gap: 12px;
-
         flex-wrap: wrap;
-
         margin-bottom: 18px;
-
       }
-
-
 
       .toolbar .search { flex: 1 1 280px; }
-
       .toolbar .filter { width: 180px; }
 
-
-
       .statusbar {
-
         display: flex;
-
         justify-content: space-between;
-
         align-items: center;
-
         color: var(--muted);
-
         font-size: 14px;
-
         margin-bottom: 14px;
-
       }
-
-
 
       .grid {
-
         display: grid;
-
         grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-
         gap: 16px;
-
       }
-
-
 
       .card {
-
         background: white;
-
         border: 1px solid var(--line);
-
         border-radius: 20px;
-
         padding: 18px;
-
         display: flex;
-
         flex-direction: column;
-
         gap: 8px;
-
       }
-
-
 
       .badge {
-
         display: inline-block;
-
         width: fit-content;
-
         padding: 6px 10px;
-
         border-radius: 999px;
-
         font-size: 12px;
-
         font-weight: 700;
-
         background: var(--tag);
-
         color: #2f83c6;
-
       }
-
-
 
       .question { font-size: 18px; font-weight: 800; margin: 6px 0 0; white-space: pre-wrap; }
-
       .answer-text { font-size: 14px; margin-bottom: 10px; white-space: pre-wrap; line-height: 1.6; }
-
       .meta { font-size: 12px; color: var(--muted); }
-
       .card-footer { margin-top: auto; }
 
-
-
       .btn-small {
-
         padding: 8px 12px;
-
         border-radius: 10px;
-
         font-size: 13px;
-
         background: #f3f4f6;
-
         color: var(--text);
-
       }
-
-
 
       .empty {
-
         text-align: center;
-
         padding: 60px 20px;
-
         color: var(--muted);
-
         border: 1px dashed var(--line);
-
         border-radius: 20px;
-
         display: none;
-
       }
 
-
+      .loading {
+        color: var(--muted);
+        font-size: 14px;
+      }
 
       @media (max-width: 960px) {
-
         .layout { grid-template-columns: 1fr; }
-
         .form-panel { position: static; }
-
       }
-
     </style>
-
   </head>
-
   <body>
-
     <div class="container">
-
       <section class="hero">
-
         <h1>KIRD 알파캠퍼스 챗봇 학습용 질문응답세트</h1>
-
         <p>
-
           부서별 FAQ를 학습한 챗봇으로 반복 민원을 자동 처리하여 담당자의 응대 부담을 줄이고자 합니다.<br />
-
           누구나 질문을 추가하고, 기존 내용을 수정하며, 함께 품질을 높일 수 있도록 구성했습니다.<br />
-
           문의 : 스마트교육실 최윤희(7023, yhchoi@kird.re.kr)
-
         </p>
-
       </section>
-
-
 
       <section class="layout">
-
         <aside class="panel form-panel">
-
           <div class="panel-title">질문 등록 / 수정</div>
-
           <div class="panel-desc">질문과 답변을 입력한 뒤 저장하세요.</div>
 
-
-
-            <div class="field">
-
+          <div class="field">
             <label for="question">질문</label>
-
             <textarea id="question" placeholder="자주 받는 질문을 입력하세요"></textarea>
-
           </div>
 
-
-
           <div class="field">
-
             <label for="answer">답변</label>
-
             <textarea id="answer" class="answer-box" placeholder="권장 답변 또는 안내 문구를 입력하세요"></textarea>
-
           </div>
 
-
-
           <div class="field">
-
             <label for="category">이 질문은 어느 본부에게 해당되나요?</label>
-
             <select id="category">
-
               <option value="인재교육본부">인재교육본부</option>
-
               <option value="인재개발본부">인재개발본부</option>
-
               <option value="경영전략본부">경영전략본부</option>
-
             </select>
-
           </div>
-
-
 
           <div class="field">
-
-            <label for="author">부서(선택)</label>
-
+            <label for="author">부서(선택 입력)</label>
             <input id="author" placeholder="예: 스마트교육실" />
-
           </div>
-
-
 
           <div class="actions">
-
             <button id="saveBtn" class="btn-primary" type="button">저장</button>
-
             <button id="cancelBtn" class="btn-secondary" type="button">초기화</button>
-
           </div>
-
         </aside>
 
-
-
         <main class="panel content-panel">
-
           <div class="toolbar">
-
             <input id="searchInput" class="search" placeholder="검색" />
-
             <select id="filterCategory" class="filter">
-
               <option value="전체">전체</option>
-
               <option value="인재교육본부">인재교육본부</option>
-
               <option value="인재개발본부">인재개발본부</option>
-
               <option value="경영전략본부">경영전략본부</option>
-
             </select>
-
             <button id="excelBtn" class="btn-secondary" type="button">엑셀 다운로드</button>
-
           </div>
-
-
 
           <div class="statusbar">
-
             <span id="countText">총 0건</span>
-
+            <span id="loadingText" class="loading">데이터를 불러오는 중입니다...</span>
           </div>
 
-
-
           <div id="board" class="grid"></div>
-
           <div id="emptyState" class="empty">등록된 데이터가 없습니다.</div>
-
         </main>
-
       </section>
-
     </div>
 
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
+      import {
+        getFirestore,
+        collection,
+        addDoc,
+        onSnapshot,
+        doc,
+        updateDoc,
+        serverTimestamp,
+        query,
+        orderBy
+      } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js";
 
+      const firebaseConfig = {
+        apiKey: "AIzaSyDQZBDjzpn8QkHO53HsnT08QAmfq81ERFo",
+        authDomain: "golden-set-construction.firebaseapp.com",
+        projectId: "golden-set-construction",
+        storageBucket: "golden-set-construction.firebasestorage.app",
+        messagingSenderId: "1023658166709",
+        appId: "1:1023658166709:web:0f6878d90a6595309d71fc",
+        measurementId: "G-Q25CC3R5GT"
+      };
 
-    <script>
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
+      const qaCollection = collection(db, 'qaItems');
 
       let items = [];
-
       let editingId = null;
-
-
+      let isLoaded = false;
 
       const board = document.getElementById('board');
-
       const author = document.getElementById('author');
-
       const category = document.getElementById('category');
-
       const question = document.getElementById('question');
-
       const answer = document.getElementById('answer');
-
       const countText = document.getElementById('countText');
-
       const emptyState = document.getElementById('emptyState');
-
       const searchInput = document.getElementById('searchInput');
-
       const filterCategory = document.getElementById('filterCategory');
-
       const saveBtn = document.getElementById('saveBtn');
-
       const cancelBtn = document.getElementById('cancelBtn');
-
       const excelBtn = document.getElementById('excelBtn');
-
-
+      const loadingText = document.getElementById('loadingText');
 
       function escapeHtml(value) {
-
         return String(value ?? '')
-
           .replaceAll('&', '&amp;')
-
           .replaceAll('<', '&lt;')
-
           .replaceAll('>', '&gt;')
-
           .replaceAll('"', '&quot;')
-
           .replaceAll("'", '&#039;');
-
       }
-
-
 
       function resetForm() {
-
         editingId = null;
-
         author.value = '';
-
         category.value = '인재교육본부';
-
         question.value = '';
-
         answer.value = '';
-
+        saveBtn.textContent = '저장';
       }
-
-
 
       function getFilteredItems() {
-
         const keyword = searchInput.value.trim().toLowerCase();
-
         const selectedCategory = filterCategory.value;
 
-
-
         return items.filter((item) => {
-
           const matchCategory = selectedCategory === '전체' || item.category === selectedCategory;
-
           const haystack = [item.category, item.author, item.question, item.answer].join(' ').toLowerCase();
-
           const matchKeyword = keyword === '' || haystack.includes(keyword);
-
           return matchCategory && matchKeyword;
-
         });
-
       }
-
-
 
       function render() {
-
         const filteredItems = getFilteredItems();
 
-
-
         if (filteredItems.length === 0) {
-
           board.innerHTML = '';
-
-          emptyState.style.display = 'block';
-
+          emptyState.style.display = isLoaded ? 'block' : 'none';
         } else {
-
           emptyState.style.display = 'none';
+          board.innerHTML = filteredItems.map((item) => {
+            const answerHtml = item.answer?.trim()
+              ? `<div class="answer-text">${escapeHtml(item.answer)}</div>`
+              : '';
+            const authorHtml = item.author?.trim()
+              ? `<div class="meta">부서 ${escapeHtml(item.author)}</div>`
+              : '';
 
-          board.innerHTML = filteredItems.map((item) => `
-
-            <article class="card">
-
-              <span class="badge">${escapeHtml(item.category)}</span>
-
-              <div class="question">${escapeHtml(item.question)}</div>
-
-              <div class="answer-text">${escapeHtml(item.answer)}</div>
-
-              <div class="meta">부서 ${escapeHtml(item.author)}</div>
-
-              <div class="card-footer">
-
-                <button class="btn-small" type="button" onclick="editItem('${item.id}')">수정</button>
-
-              </div>
-
-            </article>
-
-          `).join('');
-
+            return `
+              <article class="card">
+                <span class="badge">${escapeHtml(item.category)}</span>
+                <div class="question">${escapeHtml(item.question)}</div>
+                ${answerHtml}
+                ${authorHtml}
+                <div class="card-footer">
+                  <button class="btn-small" type="button" data-id="${item.id}">수정</button>
+                </div>
+              </article>
+            `;
+          }).join('');
         }
-
-
 
         countText.textContent = '총 ' + filteredItems.length + '건';
-
+        loadingText.style.display = isLoaded ? 'none' : 'inline';
       }
-
-
 
       function editItem(id) {
-
         const item = items.find((value) => value.id === id);
-
         if (!item) return;
 
-
-
         editingId = id;
-
-        author.value = item.author;
-
-        category.value = item.category;
-
-        question.value = item.question;
-
-        answer.value = item.answer;
-
+        author.value = item.author || '';
+        category.value = item.category || '인재교육본부';
+        question.value = item.question || '';
+        answer.value = item.answer || '';
+        saveBtn.textContent = '수정 저장';
         window.scrollTo({ top: 0, behavior: 'smooth' });
-
       }
 
-
-
-      window.editItem = editItem;
-
-
-
-        function validateForm() {
-
+      function validateForm() {
         if (!question.value.trim()) {
-
           alert('질문을 입력해 주세요.');
-
           question.focus();
-
           return false;
-
         }
-
         return true;
-
       }
 
-
-
-      saveBtn.addEventListener('click', () => {
-
+      async function saveItem() {
         if (!validateForm()) return;
 
-
+        saveBtn.disabled = true;
+        saveBtn.textContent = editingId ? '수정 중...' : '저장 중...';
 
         const data = {
-
-          id: editingId || String(Date.now()),
-
-          author: author.value.trim() || '-',
-
+          author: author.value.trim(),
           category: category.value,
-
           question: question.value.trim(),
-
-          answer: answer.value.trim() || ''
-
+          answer: answer.value.trim(),
+          updatedAt: serverTimestamp()
         };
 
-
-
-        if (editingId) {
-
-          items = items.map((value) => value.id === editingId ? data : value);
-
-        } else {
-
-          items.unshift(data);
-
+        try {
+          if (editingId) {
+            await updateDoc(doc(db, 'qaItems', editingId), data);
+          } else {
+            await addDoc(qaCollection, {
+              ...data,
+              createdAt: serverTimestamp()
+            });
+          }
+          resetForm();
+        } catch (error) {
+          console.error(error);
+          alert('저장 중 오류가 발생했습니다. Firestore 보안 규칙과 설정값을 확인해 주세요.');
+          saveBtn.textContent = editingId ? '수정 저장' : '저장';
+        } finally {
+          saveBtn.disabled = false;
         }
-
-
-
-        resetForm();
-
-        render();
-
-      });
-
-
-
-      cancelBtn.addEventListener('click', resetForm);
-
-      searchInput.addEventListener('input', render);
-
-      filterCategory.addEventListener('change', render);
-
-
+      }
 
       function toCsvCell(value) {
-
         return '"' + String(value ?? '').replace(/"/g, '""') + '"';
-
       }
-
-
 
       function downloadExcel() {
-
         if (items.length === 0) {
-
           alert('데이터가 없습니다');
-
           return;
-
         }
 
-
-
         const header = ['번호', '본부', '부서', '질문', '답변'];
-
         const rows = items.map((value, index) => [
-
           index + 1,
-
           value.category,
-
           value.author,
-
           value.question,
-
           value.answer
-
         ]);
 
-
-
         const csv = [header, ...rows]
-
           .map((row) => row.map(toCsvCell).join(','))
-
           .join('\n');
 
-
-
         const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;' });
-
         const link = document.createElement('a');
-
         link.href = URL.createObjectURL(blob);
-
         link.download = '챗봇QA데이터.csv';
-
         document.body.appendChild(link);
-
         link.click();
-
         document.body.removeChild(link);
-
         URL.revokeObjectURL(link.href);
-
       }
 
+      board.addEventListener('click', (event) => {
+        const button = event.target.closest('button[data-id]');
+        if (!button) return;
+        editItem(button.dataset.id);
+      });
 
-
+      saveBtn.addEventListener('click', saveItem);
+      cancelBtn.addEventListener('click', resetForm);
+      searchInput.addEventListener('input', render);
+      filterCategory.addEventListener('change', render);
       excelBtn.addEventListener('click', downloadExcel);
 
-
-
-      function runSmokeTests() {
-
-        console.assert(document.querySelectorAll('#answer').length === 1, 'answer id must be unique');
-
-        console.assert(document.getElementById('question') !== null, 'question element should exist');
-
-        console.assert(document.getElementById('answer') !== null, 'answer element should exist');
-
-        console.assert(typeof downloadExcel === 'function', 'downloadExcel should be defined');
-
-      }
-
-
-
-      runSmokeTests();
+      const qaQuery = query(qaCollection, orderBy('createdAt', 'desc'));
+      onSnapshot(qaQuery, (snapshot) => {
+        items = snapshot.docs.map((itemDoc) => ({
+          id: itemDoc.id,
+          ...itemDoc.data()
+        }));
+        isLoaded = true;
+        render();
+      }, (error) => {
+        console.error(error);
+        isLoaded = true;
+        loadingText.textContent = '데이터를 불러오지 못했습니다.';
+        alert('Firestore 데이터를 불러오지 못했습니다. 보안 규칙과 인덱스를 확인해 주세요.');
+      });
 
       render();
-
     </script>
-
   </body>
-
 </html>
