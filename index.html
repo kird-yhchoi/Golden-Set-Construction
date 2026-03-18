@@ -724,33 +724,13 @@
 
 
 
-      function validateForm() {
-
-        if (!author.value.trim()) {
-
-          alert('부서를 입력해 주세요.');
-
-          author.focus();
-
-          return false;
-
-        }
+        function validateForm() {
 
         if (!question.value.trim()) {
 
           alert('질문을 입력해 주세요.');
 
           question.focus();
-
-          return false;
-
-        }
-
-        if (!answer.value.trim()) {
-
-          alert('답변을 입력해 주세요.');
-
-          answer.focus();
 
           return false;
 
@@ -772,13 +752,13 @@
 
           id: editingId || String(Date.now()),
 
-          author: author.value.trim(),
+          author: author.value.trim() || '-',
 
           category: category.value,
 
           question: question.value.trim(),
 
-          answer: answer.value.trim()
+          answer: answer.value.trim() || ''
 
         };
 
